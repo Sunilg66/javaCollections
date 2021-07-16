@@ -27,16 +27,8 @@ public class AlcoholDTO implements Serializable, Comparable<AlcoholDTO>{
 
 	@Override
 	public int compareTo(AlcoholDTO dt) {
-		System.out.println("compared" + dt);
-		String brand = dt.getBrand();
-		if (this.brand.compareTo(brand) == 0)
-			return 0;
-		if (this.brand.compareTo(brand) > 0)
-			return 1;
-		else if (this.brand.compareTo(brand) < 0)
-			return -1;
-
-		return 0;
+		
+		return this.brand.compareTo(dt.brand);
 
 	}
 
