@@ -12,4 +12,6 @@ public interface RiverDAO {
 
 	boolean delete(RiverDTO dto);
 
+	RiverDTO findByName(String name);
+
 }

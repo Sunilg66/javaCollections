@@ -1,6 +1,7 @@
 package com.sunil.dataStore.dto.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.sunil.dataStore.dto.RiverDTO;
@@ -28,8 +29,8 @@ public class RiverDAOImpl implements RiverDAO {
 		boolean contain = this.list.contains(dto);
 		if (contain) {
 			System.out.println("river exist and update" + dto);
-			int indexOfRiver = this.list.indexOf(dto);
-			this.list.set(indexOfRiver, dto);
+			int riverindex = this.list.indexOf(dto);
+			this.list.set(riverindex, dto);
 		} else {
 			System.out.println("river not found");
 		}
@@ -46,5 +47,22 @@ public class RiverDAOImpl implements RiverDAO {
 
 		return false;
 	}
-
+	
+	@Override
+	public RiverDTO findByName(String name) {
+		
+		RiverDTO dto = null;
+		
+		Iterator<RiverDTO> it = this.list.iterator();
+		while(it.hasNext()) {
+			RiverDTO river = it.next();
+			if(river.getName().equals(name)) {
+				dto=river;
+				break;
+			}
+		}
+		return dto;
+		
+		
+	}
 }

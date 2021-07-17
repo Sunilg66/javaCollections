@@ -18,13 +18,16 @@ public class RiverDAOTester {
 
 		System.out.println(dao.totalItems());
 
-		RiverDTO kaveriupdate = new RiverDTO("Kaveri", "TalaKaveri", 808, 4, true);
+		RiverDTO kaveriupdate = new RiverDTO("Cauvery", "TalaKaadu", 808, 4, true);
 		dao.update(kaveriupdate);
 		System.out.println("total items" + dao.totalItems());
 
-		RiverDTO deletedto = new RiverDTO("Sharavathi", "Ambootirtha", 198, 1, true);
+		RiverDTO deletedto = new RiverDTO("Sharavathi", "Kundadri", 198, 1, true);
 		dao.delete(deletedto);
 		System.out.println(dao.totalItems());
+		
+		RiverDTO dt = dao.findByName("Kaveri");
+		System.out.println(dt);
 
 	}
 
