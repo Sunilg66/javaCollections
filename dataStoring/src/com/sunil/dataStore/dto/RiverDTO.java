@@ -35,10 +35,8 @@ public class RiverDTO {
 		if (obj instanceof RiverDTO) {
 			RiverDTO cast = (RiverDTO) obj;
 			if (this.name.equals(cast.name)) {
-				System.out.println("both are equal" + this.name);
 				return true;
 			} else {
-				System.out.println("both are not equal");
 				return false;
 			}
 		}
