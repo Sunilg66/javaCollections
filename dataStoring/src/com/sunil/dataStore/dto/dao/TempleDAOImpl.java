@@ -24,11 +24,8 @@ public class TempleDAOImpl implements TempleDAO {
 	public boolean delete(TempleDTO dto) {
 		if (this.list.contains(dto)) {
 			System.out.println("delete : " + dto);
-		} else {
-			System.out.println("Temple not found cannot delete");
 		}
-
-		return false;
+		return this.list.remove(dto);
 	}
 
 	// totalItems();//
@@ -41,16 +38,14 @@ public class TempleDAOImpl implements TempleDAO {
 
 	@Override
 	public TempleDTO findFirstItem() {
-		TempleDTO firstItem = list.get(0);
-		System.out.println("first item : " + firstItem);
-		return firstItem;
+
+		return this.list.get(0);
 	}
 
 	@Override
 	public TempleDTO findLastItem() {
-		TempleDTO lastItem = list.get(list.size() - 1);
-		System.out.println("Last item : " + lastItem);
-		return lastItem;
+
+		return list.get(list.size() - 1);
 	}
 
 	// findByName//
@@ -78,6 +73,7 @@ public class TempleDAOImpl implements TempleDAO {
 		TempleDTO dt = null;
 
 		Iterator<TempleDTO> byLocation = this.list.iterator();
+
 		while (byLocation.hasNext()) {
 			TempleDTO place = byLocation.next();
 			if (place.getLocation().equals(location)) {
@@ -109,75 +105,81 @@ public class TempleDAOImpl implements TempleDAO {
 
 	@Override
 	public Collection<TempleDTO> findAll() {
-		Iterator<TempleDTO> find = this.list.iterator();
-		while (find.hasNext()) {
-			TempleDTO temple = find.next();
-			System.out.println("findAll : " + temple);
-		}
-		return null;
+
+		return this.list;
 	}
-	
+
 	@Override
 	public Collection<TempleDTO> findAllTempleByLocationStartsWith(char character) {
 		char c = character;
 		String s = Character.toString(c);
+		Collection<TempleDTO> collection = new ArrayList<TempleDTO>();
 		Iterator<TempleDTO> templeByLocation = this.list.iterator();
 		while (templeByLocation.hasNext()) {
 			TempleDTO temp = templeByLocation.next();
 			if (temp.getLocation().startsWith(s)) {
 				System.out.println(" temple by location starts with : " + temp);
+				collection.add(temp);
 			}
 		}
-		return null;
+		return collection;
 	}
 
 	@Override
 	public Collection<TempleDTO> findAllTempleByEntryFeeGreaterThan(double cost) {
-		TempleDTO dto = null;
 		Iterator<TempleDTO> entryFeeGreaterThan = this.list.iterator();
+		Collection<TempleDTO> coll = new ArrayList<TempleDTO>();
 		while (entryFeeGreaterThan.hasNext()) {
 			TempleDTO dt = entryFeeGreaterThan.next();
 			if (dt.getEntryFee() > cost) {
 				System.out.println("Entry fee greater than : " + dt);
+				coll.add(dt);
 			}
 		}
-		return null;
+		return coll;
 	}
 
 	@Override
 	public Collection<TempleDTO> findAllTempleByNoOfPoojariesGreaterThan(int num) {
 		Iterator<TempleDTO> noOfPoojaries = this.list.iterator();
+		Collection<TempleDTO> collection = new ArrayList<TempleDTO>();
 		while (noOfPoojaries.hasNext()) {
 			TempleDTO temp = noOfPoojaries.next();
 			if (temp.getNoOfPoojaries() > num) {
 				System.out.println("Number of poojaries greater than is : " + temp);
+				collection.add(temp);
 			}
 		}
-		return null;
+		return collection;
 	}
 
 	@Override
 	public String findLocationByName(String name) {
 		Iterator<TempleDTO> locationByName = this.list.iterator();
+		String locationbyname = null;
 		while (locationByName.hasNext()) {
 			TempleDTO temple = locationByName.next();
 			if (temple.getName().equals(name)) {
-				System.out.println("find by location : " + temple);
+				System.out.println("find by location : " + temple.getLocation());
+				locationbyname = name;
+
 			}
 		}
 
-		return null;
+		return locationbyname;
 	}
 
 	@Override
 	public Collection<String> findAllLocation() {
 		Iterator<TempleDTO> alllocation = this.list.iterator();
+		Collection<String> str = new ArrayList<String>();
 		while (alllocation.hasNext()) {
 			TempleDTO findalllocation = alllocation.next();
 			System.out.println("findall location : " + findalllocation.getLocation());
+			str.add(findalllocation.getLocation());
 		}
 
-		return null;
+		return str;
 	}
 
 }
